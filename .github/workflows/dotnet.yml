@@ -24,6 +24,8 @@ jobs:
         run: dotnet nuget add source --username Jarak-Jakar --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/Jarak-Jakar/index.json"
       - name: Restore dependencies
         run: dotnet restore
+      - name: Output NuGet locations
+        run: dotnet nuget locals --list all
       - name: Build
         run: dotnet build --no-restore
       - name: Test
