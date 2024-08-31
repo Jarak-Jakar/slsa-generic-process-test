@@ -2,7 +2,7 @@
 
 on:
   release:
-    types: [created]
+    types: [ created ]
 
 jobs:
   deploy:
@@ -21,5 +21,9 @@ jobs:
       - run: dotnet build --configuration Release ./lib/lib.fsproj
       - name: Create the package
         run: dotnet pack --configuration Release ./lib/lib.fsproj
+      - name: Generate artifact attestation
+        uses: actions/attest-build-provenance@v1
+        with:
+          subject-path: ./lib/bin/Release/*.nupkg
       - name: Publish the package to GPR
         run: dotnet nuget push ./lib/bin/Release/*.nupkg
