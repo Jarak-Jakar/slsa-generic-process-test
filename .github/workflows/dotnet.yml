@@ -28,3 +28,5 @@ jobs:
         run: dotnet build --no-restore
       - name: Test
         run: dotnet test --no-build --verbosity normal
+      - name: Try to run program to prove it works
+        run: dotnet run --project .\prog\prog.fsproj
