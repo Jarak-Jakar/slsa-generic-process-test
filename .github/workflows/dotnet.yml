@@ -34,6 +34,8 @@ jobs:
           echo $NUGET_GLOBAL_LOCATION_TRIMMED
       - name: List NuGet cache contents to see where lib is stored
         run: ls --all --recursive $NUGET_GLOBAL_LOCATION_TRIMMED
+      - name: Verify lib attestation
+        run: gh attestation verify -o Jarak-Jakar --signer-repo Jarak-Jakar/slsa-generic-process-test /home/runner/.nuget/packages/lib/0.0.3/lib.0.0.3.nupkg
       - name: Build
         run: dotnet build --no-restore
       - name: Test
