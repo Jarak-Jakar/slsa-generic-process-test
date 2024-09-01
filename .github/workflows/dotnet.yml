@@ -25,7 +25,9 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore
       - name: Output NuGet locations
-        run: dotnet nuget locals --list all
+        run: echo "NUGET_GLOBAL_LOCATION=$(dotnet nuget locals --list all | grep -i 'global-packages')" >> $GITHUB_ENV
+      - name: Test NuGet location lookup
+        run: echo $
       - name: Build
         run: dotnet build --no-restore
       - name: Test
