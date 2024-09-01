@@ -3,6 +3,9 @@
 
 name: .NET
 
+env:
+  GH_TOKEN: ${{ github.token }}
+
 on:
   push:
     branches: [ "main" ]
